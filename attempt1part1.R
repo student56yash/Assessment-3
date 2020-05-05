@@ -8,7 +8,7 @@ typeof(x)
 head(x)
 str(x)
 
-# Making the gene accession numbers the row name
+# Making the gene accession numbers the row names
 x <- read.table("gene_expression.tsv", header = TRUE)
 head(x)
 str(x)
