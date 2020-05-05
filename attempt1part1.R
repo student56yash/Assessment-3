@@ -1,7 +1,7 @@
 # Downlod the data file of "gene_expression.tsv"
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/gene_expression.tsv",destfile="gene_expression.tsv")
 
-# Read into R 
+# Read into R
 x<-read.table("gene_expression.tsv")
 # Lets check data type and if the data has been imported properly
 typeof(x)
