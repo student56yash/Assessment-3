@@ -1,0 +1,48 @@
+#import “growth_data.csv” file into the R
+download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/growth_data.csv",destfile="growth_data.csv")
+A<-read.csv("growth_data.csv")
+head(A)
+str(A)
+
+A <- read.csv("growth_data.csv", header = TRUE, sep = "," ,stringsAsFactors = FALSE)
+A
+
+#The column names 
+colnames(A)
+
+#Standard Deviation and the mean value of tree circumference at year 2004 and year 2019
+##Northeast site
+NE<-subset(A,Site=="northeast")
+head(NE)
+###year 2004
+mean(NE$Circumf_2004_cm)
+sd(NE$Circumf_2004_cm)
+###Year 2019
+mean(NE$Circumf_2019_cm)
+sd(NE$Circumf_2019_cm)
+
+##Southeast site
+SW<-subset(A,Site=="southwest")
+head(SW)
+###year 2004
+mean(SW$Circumf_2004_cm)
+sd(SW$Circumf_2004_cm)
+###year 2019
+mean(SW$Circumf_2019_cm)
+sd(SW$Circumf_2019_cm)
+
+#Box plot of tree circumference at the start and end of the study at both sites
+
+boxplot(NE$Circumf_2004_cm,NE$Circumf_2019_cm,SW$Circumf_2004_cm,SW$Circumf_2019_cm)
+boxplot(NE$Circumf_2004_cm,NE$Circumf_2019_cm,SW$Circumf_2004_cm,SW$Circumf_2019_cm,ylab="Circumference(cm)",names=c("Northeast2004","Southwest2004","Northeast2019","Southwest2019"), main="Growth rate of Two Plantation Sites",las=2,col=c("Red","Green"),border = "black",ntch=TRUE)
+
+#mean growth over the past 10 years at each site
+NE$growth<-NE$Circumf_2019_cm-NE$Circumf_2009_cm
+head(NE)
+
+SW$growth<-SW$Circumf_2019_cm-SW$Circumf_2009_cm
+head(SW)
+
+#t.test and wilcox.test functions to estimate the p-value that the 10 year growth
+t.test(SW$growth,NE$growth)
+wilcox.test(SW$growth,NE$growth)

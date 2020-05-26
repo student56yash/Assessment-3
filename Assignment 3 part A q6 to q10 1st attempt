@@ -1,0 +1,11 @@
+download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/growth_data.csv",destfile="growth_data.csv")
+A<-read.csv("growth_data.csv")
+head(A)
+str(A)
+A <- read.csv("growth_data.csv", header = TRUE, sep = "," ,stringsAsFactors = FALSE)
+A
+mean(A$Circumf_2004_cm)
+mean(A$Circumf_2019_cm)
+
+boxplot(A$Circumf_2004_cm, main = "Tree circumference", xlab = "circumference", ylab = "Time", horizontal = TRUE, notch = TRUE)
+boxplot(A$Circumf_2019_cm, main = "Tree circumference", xlab = "circumference", ylab = "Time", horizontal = TRUE, notch = TRUE)
