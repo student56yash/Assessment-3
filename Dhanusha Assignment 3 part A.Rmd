@@ -1,0 +1,71 @@
+---
+title: Assesment-3 Part-1; importing files, data wrangling, mathematical operations,
+  plots and saving code on GitHub
+Theam: cosmo
+output:
+  html_document:
+    df_print: paged
+Output: html_document
+---
+
+Author: Yasodha Jayawardena & Dhanusha Weerawardana
+---
+
+
+# Introduction
+rstudio
+
+
+# Question 1-Download the file and read into the R studio.
+In order to download the file by the comand `download.file` and then to import data into the R and cread data according to a format, respectivly `header = TRUE` and `row.name = 1` commands can be applied. In addition, `head()` and `str()` commands can be used to check if the data is improt properly and also the stucture of the data.
+
+```{r,chunck1,echo=TRUE}
+#Read the file
+download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/gene_expression.tsv",destfile="gene_expression.tsv")
+x<-read.table("gene_expression.tsv")
+head(x)
+str(x)
+
+x <- read.table("gene_expression.tsv", header = TRUE , stringsAsFactors = FALSE , row.names = 1, sep="\t")
+head(x)
+str(x)
+```
+
+
+# Question 2-Make a new column for mean of the other columns and present a table with first 6 values.
+In this situation, `$` apply create a data farame and then `<-` operator used to assign a new vector of data to it. All in all the command should appear like `_$Mean<- rowMeans ()`. Finally `head()` can be used to obtain mean values of first 6 columns.
+
+```{r,chunck2,echo=TRUE}
+#Create new column for mean values
+x$Mean<- rowMeans(x)
+head(x)
+```
+
+# Question 3-List the 10 genes with the highest mean expression.
+in this question data has to be sort by giving command `order()` and the number of data can be determine by `n= required amount`. Altogteher the commanand should be `head(ord<-X[order(-X$Mean),],n=10)` and X is the data farme.
+
+```{r,chunck3,echo=TRUE}
+#10 genes with the higher mean values
+head(ord<-x[order(-x$Mean),],n=10)
+```
+
+# Question 4-Determine the number of genes with a mean <10.
+In order to obtain the value of mean value above 10, `which()` fuction can be used. To illustrate, in a logical vector `which()` fuction able to return the posion of true element.Thereby, the B is new data set(mean value above 10) and the data frame is `rowMean` of X.
+
+```{r,chunck4,echo=TRUE}
+#Number of gene with the mean value above 10
+which(B<-rowMeans(x)<10)
+```
+
+# Question 5-Make a histogram plot of the mean values in png format.
+in this question, plot a histogram for mean values and saved as in png format. Therefore, first `hist` command can be used to creat a histogram and `x$Mean` is the data frame. Secondly, `xlab` and `ylab` functions can be used to leble the x and y axis and finally in order to make the histogram clear, colors for border and columns can be apply.
+
+To save the hitogram in to the R database, `png(location)` function can be used as the command for the formaat
+
+```{r,chunck5,echo=TRUE}
+#Histogram plot of mean value in png format
+hist(x$Mean,breaks = 20,xlab="Genes",ylab="Mean",main="Mean values of the RNA sequency",col="green",border = "brown")
+png(file="Assessment part 1 first section histogram.png")
+hist(x$Mean,breaks = 20,xlab="Genes",ylab="Mean",main="Mean values of the RNA sequency",col="green",border = "brown")
+dev.off()
+```
