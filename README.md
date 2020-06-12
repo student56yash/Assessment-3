@@ -15,12 +15,11 @@ Develop problem solving skills, R coding, and improve the team working ability w
 ## Instalation
 Rstudio Version 1.2.1335 and R version 3.6.3
 
-## Contribute
-
-## Credits
-Yasodha Suharshi Jayawardena &
+## Contributers
+Yasodha Suharshi Jayawardena & Dhanusha Weerawardana
 
 ## License
+GNU General Public License v3.0
 
 MIT © [Yashoda Suharshi]()
 
